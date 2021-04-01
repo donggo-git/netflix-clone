@@ -6,7 +6,11 @@ import requests from './requsets'
 function App() {
   return (
     <div className="App">
-      <Row title='NETFLIX ORIGINAL' fetchUrl={requests.fetchNetflixOriginals} />
+      {/*Nav */}
+      {/*Banner */}
+      <Row title='NETFLIX ORIGINAL' fetchUrl={requests.fetchNetflixOriginals}
+        isLargeRow={true}
+      />
       <Row title='Trending Now' fetchUrl={requests.fetchTrending} />
       <Row title='Top Rated' fetchUrl={requests.fetchTopRated} />
 
