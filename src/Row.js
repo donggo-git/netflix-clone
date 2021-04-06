@@ -8,6 +8,7 @@ const base_url = "https://image.tmdb.org/t/p/original/"
 function Row({ title, fetchUrl, isLargeRow }) {
     const [movies, setMovies] = useState([])
     const [trailerUrl, setTrailerUrl] = useState("")
+    const [youtubeHeight, setYoutubeHeight] = useState("0")
     useEffect(() => {
         async function fetchData() {
             const request = await axios.get(fetchUrl)
@@ -18,7 +19,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
     }, [fetchUrl])
 
     const opts = {
-        height: "390",
+        height: youtubeHeight,
         width: "100%",
         playerVar: {
             autoplay: 1
@@ -28,6 +29,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
     const handleClick = (movie) => {
         console.log(movie.name)
         if (trailerUrl) {
+            setYoutubeHeight("0")
             setTrailerUrl('');
         }
         else {
@@ -37,6 +39,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
                     const urlParams = new URLSearchParams(new URL(url).search);
                     setTrailerUrl(urlParams.get("v"))
                 }).catch((error) => console.log(error))
+            setYoutubeHeight("390")
         }
     }
     return (
